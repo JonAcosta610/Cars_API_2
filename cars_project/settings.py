@@ -75,8 +75,11 @@ WSGI_APPLICATION = 'cars_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'cars_database',
+        'HOST': 'localhost',
+        'USER': 'root',
+        'PASSWORD': 'jonjon87',
     }
 }
 
@@ -121,3 +124,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+try:
+    from cars_project.local_setting import *
+except ImportError:
+    pass
