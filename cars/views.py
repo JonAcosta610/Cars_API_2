@@ -18,3 +18,12 @@ def cars_list(request):
         else:
             return Response(serializer.errors, status=400)
 
+@api_view(['GET'])
+def car_detail(request, pk):
+    try:
+        car = Car.objects.get(pk=pk)
+        serializer = CarSerializer(car)
+        return Response(serializer.data)
+    except Car.DoesNotExist:
+        return Response(status=404)
+
